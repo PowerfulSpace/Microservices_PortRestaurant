@@ -1,5 +1,13 @@
+
+
+
+using Microsoft.EntityFrameworkCore;
+using PS.PortRestaurant.Services.ProductAPI.DbContexts;
+
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
