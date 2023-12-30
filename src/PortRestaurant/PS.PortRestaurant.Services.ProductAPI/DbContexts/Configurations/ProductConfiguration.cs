@@ -4,9 +4,9 @@ using PS.PortRestaurant.Services.ProductAPI.Models;
 
 namespace PS.PortRestaurant.Services.ProductAPI.DbContexts.Configurations
 {
-    public class ProductConfiguration : IEntityTypeConfiguration<Category>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder
                .HasOne(x => x.Category)

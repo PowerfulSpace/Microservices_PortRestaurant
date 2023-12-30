@@ -2,7 +2,7 @@
 
 namespace PS.PortRestaurant.Services.ProductAPI.Models
 {
-    public class Category
+    public class Product
     {
         [Key]
         public Guid Id { get; set; }

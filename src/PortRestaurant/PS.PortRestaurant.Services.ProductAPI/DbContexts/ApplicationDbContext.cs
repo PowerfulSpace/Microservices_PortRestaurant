@@ -11,7 +11,7 @@ namespace PS.PortRestaurant.Services.ProductAPI.DbContexts
             
         }
 
-        public DbSet<Category> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
 
 
