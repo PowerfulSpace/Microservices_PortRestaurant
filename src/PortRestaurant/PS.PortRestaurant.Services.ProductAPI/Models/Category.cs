@@ -9,6 +9,6 @@ namespace PS.PortRestaurant.Services.ProductAPI.Models
         public Guid Id { get; set; }
         [Required]
         public string Name { get; set; } = null!;
-        public List<Product> Products { get; set; } = new List<Product>();
+        public List<Category> Products { get; set; } = new List<Category>();
     }
 }
