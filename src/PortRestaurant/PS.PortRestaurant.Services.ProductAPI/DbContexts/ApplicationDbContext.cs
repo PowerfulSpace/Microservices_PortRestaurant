@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PS.PortRestaurant.Services.ProductAPI.Models;
 
 namespace PS.PortRestaurant.Services.ProductAPI.DbContexts
 {
@@ -8,5 +9,8 @@ namespace PS.PortRestaurant.Services.ProductAPI.DbContexts
         {
             
         }
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
