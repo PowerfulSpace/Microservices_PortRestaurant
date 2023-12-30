@@ -13,6 +13,8 @@ namespace PS.PortRestaurant.Services.ProductAPI.Models
         public string Description { get; set; } = string.Empty;      
         public string ImageUrl { get; set; } = string.Empty;
 
-        public string CategoryName { get; set; } = string.Empty;
+
+        public Guid? CategoryId { get; set; }
+        public Category? Category { get; set; }
     }
 }
