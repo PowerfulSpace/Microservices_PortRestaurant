@@ -7,18 +7,18 @@ using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var localizationOptions = new RequestLocalizationOptions();
+//var localizationOptions = new RequestLocalizationOptions();
 
-var supportedCultures = new[]
-{
-    new CultureInfo("en-US"),
-    new CultureInfo("es-ES")
-};
+//var supportedCultures = new[]
+//{
+//    new CultureInfo("en-US"),
+//    new CultureInfo("es-ES")
+//};
 
-localizationOptions.SupportedCultures = supportedCultures;
-localizationOptions.SupportedUICultures = supportedCultures;
-localizationOptions.SetDefaultCulture("en-US");
-localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
+//localizationOptions.SupportedCultures = supportedCultures;
+//localizationOptions.SupportedUICultures = supportedCultures;
+//localizationOptions.SetDefaultCulture("en-US");
+//localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -38,7 +38,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.UseRequestLocalization(localizationOptions);
+//app.UseRequestLocalization(localizationOptions);
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
