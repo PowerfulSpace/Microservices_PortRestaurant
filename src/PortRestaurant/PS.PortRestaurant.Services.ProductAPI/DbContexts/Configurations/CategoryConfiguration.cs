@@ -10,7 +10,8 @@ namespace PS.PortRestaurant.Services.ProductAPI.DbContexts.Configurations
         {
             builder
                 .HasMany(x => x.Products)
-                .WithOne(x => x.Category);               
+                .WithOne(x => x.Category)
+                .HasForeignKey(x => x.CategoryId);
         }
     }
 }
