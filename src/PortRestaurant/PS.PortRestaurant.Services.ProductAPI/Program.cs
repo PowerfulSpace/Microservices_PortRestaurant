@@ -3,7 +3,6 @@
 
 using Microsoft.EntityFrameworkCore;
 using PS.PortRestaurant.Services.ProductAPI.DbContexts;
-using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
