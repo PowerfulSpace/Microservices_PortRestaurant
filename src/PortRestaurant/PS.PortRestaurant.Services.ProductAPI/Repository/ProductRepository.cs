@@ -42,7 +42,22 @@ namespace PS.PortRestaurant.Services.ProductAPI.Repository
 
         public async Task<bool> DeleteProduct(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Product product = await _db.Products.FirstOrDefaultAsync(x => x.Id == id);
+
+                if (product == null) { return false; }
+
+                _db.Products.Remove(product);
+                await _db.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
 
       
