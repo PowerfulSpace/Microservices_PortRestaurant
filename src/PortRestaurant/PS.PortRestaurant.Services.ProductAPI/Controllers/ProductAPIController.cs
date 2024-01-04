@@ -33,5 +33,23 @@ namespace PS.PortRestaurant.Services.ProductAPI.Controllers
 
             return _response;
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<object> Get(Guid id)
+        {
+            try
+            {
+                ProductDto productDto = await _productRepository.GetProductById(id);
+                _response.Result = productDto;
+            }
+            catch (Exception e)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>() { e.ToString() };
+            }
+
+            return _response;
+        }
     }
 }
