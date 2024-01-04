@@ -4,14 +4,14 @@ using PS.PortRestaurant.Services.ProductAPI.Repository;
 
 namespace PS.PortRestaurant.Services.ProductAPI.Controllers
 {
-    [Route("api/products")]
+    [Route("api/[controller]")]
     public class ProductAPIController : ControllerBase
     {
 
         protected ResponseDto _response;
         private IProductRepository _productRepository;
 
-        public ProductAPIController(ProductRepository productRepository)
+        public ProductAPIController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
             this._response = new ResponseDto();
