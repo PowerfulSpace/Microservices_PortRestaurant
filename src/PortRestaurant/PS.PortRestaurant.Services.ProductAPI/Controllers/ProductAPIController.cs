@@ -51,5 +51,56 @@ namespace PS.PortRestaurant.Services.ProductAPI.Controllers
 
             return _response;
         }
+
+        [HttpPost]
+        public async Task<object> Post([FromBody]ProductDto productDto)
+        {
+            try
+            {
+                ProductDto model = await _productRepository.CreateUpdateProduct(productDto);
+                _response.Result = model;
+            }
+            catch (Exception e)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>() { e.ToString() };
+            }
+
+            return _response;
+        }
+
+        [HttpPut]
+        public async Task<object> Put([FromBody] ProductDto productDto)
+        {
+            try
+            {
+                ProductDto model = await _productRepository.CreateUpdateProduct(productDto);
+                _response.Result = model;
+            }
+            catch (Exception e)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>() { e.ToString() };
+            }
+
+            return _response;
+        }
+
+        [HttpDelete]
+        public async Task<object> Delete(Guid id)
+        {
+            try
+            {
+                bool isSuccess = await _productRepository.DeleteProduct(id);
+                _response.Result = isSuccess;
+            }
+            catch (Exception e)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>() { e.ToString() };
+            }
+
+            return _response;
+        }
     }
 }
