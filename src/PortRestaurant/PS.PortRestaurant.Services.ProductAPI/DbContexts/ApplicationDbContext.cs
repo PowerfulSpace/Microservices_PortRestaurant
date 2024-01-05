@@ -19,6 +19,8 @@ namespace PS.PortRestaurant.Services.ProductAPI.DbContexts
         {
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
 
     }
