@@ -1,6 +1,18 @@
+using PS.PortRestaurant.Web;
+using PS.PortRestaurant.Web.Services;
+using PS.PortRestaurant.Web.Services.IServices;
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddHttpClient<IProductService, ProductService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+SD.ProductAPIBase = builder.Configuration["ServiceUrls:ProductAPI"];
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 
