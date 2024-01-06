@@ -69,21 +69,5 @@ namespace PS.PortRestaurant.Web.Services
                 AccessToken = ""
             });
         }
-
-
-
-
-        public Task<T> SendAsync<T>(ApiRequest apiRequest)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
