@@ -20,7 +20,12 @@ namespace PS.PortRestaurant.Services.ProductAPI.Repository
 
         public async Task<IEnumerable<ProductDto>> GetProducts()
         {
-            List<Product> products = await _db.Products.ToListAsync();
+            //List<Product> products = await _db.Products
+            //    .AsNoTracking()
+            //    .Include(x => x.Category)
+            //    .ToListAsync();
+
+            List<Product> products = await _db.Products.ToListAsync();           
 
             return _mapper.Map<List<ProductDto>>(products);
         }

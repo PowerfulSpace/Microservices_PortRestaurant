@@ -12,6 +12,9 @@ namespace PS.PortRestaurant.Services.ProductAPI
             {
                 config.CreateMap<ProductDto, Product>();
                 config.CreateMap<Product, ProductDto>();
+
+                config.CreateMap<Category, CategoryDto>();
+                config.CreateMap<CategoryDto, Category>();
             });
 
             return mappingConfig;
