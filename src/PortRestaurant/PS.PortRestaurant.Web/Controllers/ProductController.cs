@@ -24,7 +24,6 @@ namespace PS.PortRestaurant.Web.Controllers
             {
                 list = JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(response.Result));
                 
-                await GetCategoriesAsync();
             }
 
             return View(list);
@@ -32,6 +31,8 @@ namespace PS.PortRestaurant.Web.Controllers
 
         public async Task<IActionResult> ProductCreate()
         {
+            await PopulateViewBagsAsync();
+
             return View();
         }
 
