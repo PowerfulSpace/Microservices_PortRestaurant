@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PS.PortRestaurant.Services.ProductAPI.DbContexts.Configurations;
 using PS.PortRestaurant.Services.ProductAPI.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace PS.PortRestaurant.Services.ProductAPI.DbContexts
 {
