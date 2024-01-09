@@ -22,46 +22,15 @@ namespace PS.PortRestaurant.Services.ProductAPI.DbContexts.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PS.PortRestaurant.Services.ProductAPI.Models.Category", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("baee70ca-5651-4713-82ac-f4442d317afa"),
-                            Name = "Appetizer"
-                        },
-                        new
-                        {
-                            Id = new Guid("84f69823-bc64-4ef6-a5ae-be49d3e966f9"),
-                            Name = "Dessert"
-                        },
-                        new
-                        {
-                            Id = new Guid("11513685-6851-4d54-9aed-4713c84bcc3f"),
-                            Name = "Entree"
-                        });
-                });
-
             modelBuilder.Entity("PS.PortRestaurant.Services.ProductAPI.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -80,15 +49,13 @@ namespace PS.PortRestaurant.Services.ProductAPI.DbContexts.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("98a4ada3-d15b-4f20-bafc-564e1a80052f"),
-                            CategoryId = new Guid("baee70ca-5651-4713-82ac-f4442d317afa"),
+                            Id = new Guid("ba1e17d9-ac52-4c40-aed6-9c9465f29084"),
+                            CategoryName = "Appetizer",
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://e1.edimdoma.ru/data/posts/0002/2542/22542-ed4_wide.jpg?1631192811",
                             Name = "Samosa",
@@ -96,8 +63,8 @@ namespace PS.PortRestaurant.Services.ProductAPI.DbContexts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ee0d48e2-0d7c-490c-b987-0dacb05d1e8a"),
-                            CategoryId = new Guid("baee70ca-5651-4713-82ac-f4442d317afa"),
+                            Id = new Guid("dadd6735-5e96-498a-b0e2-22bbb967d3b0"),
+                            CategoryName = "Appetizer",
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://img-global.cpcdn.com/recipes/251da7cdca421f817701a5467edd095a73e9f43f6fe624825fc8fcd17bc9304f/680x482cq70/ghoriachiie-bliuda-na-novyi-ghod-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg",
                             Name = "Paneer Tikka",
@@ -105,8 +72,8 @@ namespace PS.PortRestaurant.Services.ProductAPI.DbContexts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f11d764b-1ecb-49c0-9ea1-a8abe88a383d"),
-                            CategoryId = new Guid("84f69823-bc64-4ef6-a5ae-be49d3e966f9"),
+                            Id = new Guid("44ed02f7-fc6a-468c-903d-fbe9f543f209"),
+                            CategoryName = "Dessert",
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://s1.webspoon.ru/receipts/2021/1/41606/orig_41606_0_xxl.jpg",
                             Name = "Sweet Pie",
@@ -114,27 +81,13 @@ namespace PS.PortRestaurant.Services.ProductAPI.DbContexts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d7dec9e0-145b-4fb2-8328-0ac08361523f"),
-                            CategoryId = new Guid("11513685-6851-4d54-9aed-4713c84bcc3f"),
+                            Id = new Guid("9dfe9f52-5b72-4ea8-abd7-fa7c263e5421"),
+                            CategoryName = "Entree",
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_RMcFUJhD35yfT4Ps2HR16l8fBY85dqcDcg&usqp=CAU",
                             Name = "Pav Bhaji",
                             Price = 15m
                         });
-                });
-
-            modelBuilder.Entity("PS.PortRestaurant.Services.ProductAPI.Models.Product", b =>
-                {
-                    b.HasOne("PS.PortRestaurant.Services.ProductAPI.Models.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("PS.PortRestaurant.Services.ProductAPI.Models.Category", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

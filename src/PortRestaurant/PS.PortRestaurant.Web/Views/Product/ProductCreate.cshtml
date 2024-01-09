@@ -17,11 +17,11 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="col-2">
-                <label asp-for="CategoryId" class="control-label pt-2" style="font-size:20px;"></label>
+                <label asp-for="CategoryName" class="control-label pt-2" style="font-size:20px;"></label>
             </div>
             <div class="col-10 pb-3">
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                <input asp-for="CategoryName" class="form-control" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
             </div>
             <div class="col-2">
                 <label asp-for="Description" class="control-label pt-2" style="font-size:20px;"></label>

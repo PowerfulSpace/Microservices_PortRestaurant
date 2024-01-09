@@ -8,10 +8,6 @@ namespace PS.PortRestaurant.Services.ProductAPI.DbContexts.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder
-               .HasOne(x => x.Category)
-               .WithMany(x => x.Products)
-               .HasForeignKey(x => x.CategoryId);
         }
     }
 }
