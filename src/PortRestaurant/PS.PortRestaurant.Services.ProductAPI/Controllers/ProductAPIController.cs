@@ -87,6 +87,7 @@ namespace PS.PortRestaurant.Services.ProductAPI.Controllers
         }
 
         [HttpDelete]
+        [Route("{id}")]
         public async Task<object> Delete(Guid id)
         {
             try
