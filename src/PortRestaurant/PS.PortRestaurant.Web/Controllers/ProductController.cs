@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using PS.PortRestaurant.Web.Models.Dto;
 using PS.PortRestaurant.Web.Services.IServices;
+using System.Collections.Generic;
 
 namespace PS.PortRestaurant.Web.Controllers
 {
@@ -32,6 +33,23 @@ namespace PS.PortRestaurant.Web.Controllers
         public async Task<IActionResult> ProductCreate()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProductCreate(ProductDto model)
+        {
+            if(ModelState.IsValid)
+            {
+                var response = await _productService.CreateProductAsync<ResponseDto>(model);
+
+                if (response.Result != null && response.IsSuccess)
+                {
+                    return RedirectToAction(nameof(ProductIndex));
+                }
+
+            }
+
+            return View(model);
         }
 
     }
