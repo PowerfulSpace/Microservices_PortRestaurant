@@ -1,10 +1,30 @@
+using Microsoft.Extensions.Localization;
 using PS.PortRestaurant.Web;
 using PS.PortRestaurant.Web.Services;
 using PS.PortRestaurant.Web.Services.IServices;
+using System.Globalization;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddLocalization();
+
+var localizationOptions = new RequestLocalizationOptions();
+
+var supportedCultures = new[]
+{
+    new CultureInfo("en-US"),
+    new CultureInfo("es-ES")
+};
+
+localizationOptions.SupportedCultures = supportedCultures;
+localizationOptions.SupportedUICultures = supportedCultures;
+localizationOptions.SetDefaultCulture("en-US");
+localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
+
+
 
 
 builder.Services.AddHttpClient<IProductService, ProductService>();
@@ -22,6 +42,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseRequestLocalization(localizationOptions);
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
