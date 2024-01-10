@@ -83,5 +83,40 @@ namespace PS.PortRestaurant.Web.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ProductDelete(Guid productId)
+        {
+            var response = await _productService.GetProductByIdAsyncAsync<ResponseDto>(productId);
+
+            if (response.Result != null && response.IsSuccess)
+            {
+                var model = JsonConvert.DeserializeObject<ProductDto>(Convert.ToString(response.Result));
+                return View(model);
+            }
+
+            return NotFound();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ProductDelete(ProductDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _productService.DeleteProductAsync<ResponseDto>(model.Id);
+
+                if (response.Result != null && response.IsSuccess)
+                {
+                    return RedirectToAction(nameof(ProductIndex));
+                }
+
+            }
+
+            return View(model);
+        }
+
+
     }
 }
