@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using PS.PortRestaurant.Web.Models.Dto;
 using PS.PortRestaurant.Web.Services.IServices;
-using System.Collections.Generic;
-using System.Reflection;
 
 namespace PS.PortRestaurant.Web.Controllers
 {
@@ -54,10 +51,10 @@ namespace PS.PortRestaurant.Web.Controllers
             return View(model);
         }
 
-
-        public async Task<IActionResult> ProductEdit(Guid id)
+        [HttpGet]
+        public async Task<IActionResult> ProductEdit(Guid productId)
         {
-            var response = await _productService.GetProductByIdAsyncAsync<ResponseDto>(id);
+            var response = await _productService.GetProductByIdAsyncAsync<ResponseDto>(productId);
 
             if (response.Result != null && response.IsSuccess)
             {
