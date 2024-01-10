@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using PS.PortRestaurant.Web.Models.Dto;
 using PS.PortRestaurant.Web.Services.IServices;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace PS.PortRestaurant.Web.Controllers
 {
@@ -36,6 +37,7 @@ namespace PS.PortRestaurant.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ProductCreate(ProductDto model)
         {
             if(ModelState.IsValid)
@@ -52,5 +54,37 @@ namespace PS.PortRestaurant.Web.Controllers
             return View(model);
         }
 
+
+        public async Task<IActionResult> ProductEdit(Guid id)
+        {
+            var response = await _productService.GetProductByIdAsyncAsync<ResponseDto>(id);
+
+            if (response.Result != null && response.IsSuccess)
+            {
+                var model = JsonConvert.DeserializeObject<ProductDto>(Convert.ToString(response.Result));
+                return View(model);
+            }
+
+            return NotFound();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ProductEdit(ProductDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _productService.UpdateProductAsync<ResponseDto>(model);
+
+                if (response.Result != null && response.IsSuccess)
+                {
+                    return RedirectToAction(nameof(ProductIndex));
+                }
+
+            }
+
+            return View(model);
+        }
     }
 }
