@@ -14,7 +14,7 @@ builder.Services
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddIdentityServer(options =>
+var builderIdentityServer = builder.Services.AddIdentityServer(options =>
 {
     options.Events.RaiseErrorEvents = true;
     options.Events.RaiseInformationEvents = true;
@@ -26,7 +26,9 @@ builder.Services.AddIdentityServer(options =>
     .AddInMemoryApiScopes(SD.ApiScopes)
     .AddInMemoryClients(SD.Clients)
     .AddAspNetIdentity<ApplicationUser>();
-    
+
+builderIdentityServer.AddDeveloperSigningCredential();
+
 
 builder.Services.AddRazorPages();
 
