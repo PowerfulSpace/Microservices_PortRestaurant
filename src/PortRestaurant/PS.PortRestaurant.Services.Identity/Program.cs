@@ -3,7 +3,6 @@ using PS.PortRestaurant.Services.Identity.DbContexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
