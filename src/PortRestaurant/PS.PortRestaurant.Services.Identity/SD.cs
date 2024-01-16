@@ -52,7 +52,5 @@ namespace PS.PortRestaurant.Services.Identity
                     }
                 }
             };
-
-
     }
 }
