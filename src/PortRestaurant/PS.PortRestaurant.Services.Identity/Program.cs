@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PS.PortRestaurant.Services.Identity;
 using PS.PortRestaurant.Services.Identity.DbContexts;
 using PS.PortRestaurant.Services.Identity.Models;
 
@@ -12,6 +13,20 @@ builder.Services
     .AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddIdentityServer(options =>
+{
+    options.Events.RaiseErrorEvents = true;
+    options.Events.RaiseInformationEvents = true;
+    options.Events.RaiseFailureEvents = true;
+    options.Events.RaiseSuccessEvents = true;
+    options.EmitStaticAudienceClaim = true;
+})
+    .AddInMemoryIdentityResources(SD.IdentityResources)
+    .AddInMemoryApiScopes(SD.ApiScopes)
+    .AddInMemoryClients(SD.Clients)
+    .AddAspNetIdentity<ApplicationUser>();
+    
 
 builder.Services.AddRazorPages();
 
