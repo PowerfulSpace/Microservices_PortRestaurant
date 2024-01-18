@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using IdentityModel;
+using Microsoft.AspNetCore.Identity;
 using PS.PortRestaurant.Services.Identity.DbContexts;
 using PS.PortRestaurant.Services.Identity.Models;
+using System.Security.Claims;
 
 namespace PS.PortRestaurant.Services.Identity.Initializer
 {
@@ -32,14 +34,24 @@ namespace PS.PortRestaurant.Services.Identity.Initializer
 
             ApplicationUser adminUser = new ApplicationUser()
             {
-                UserName = "",
-                Email = "",
+                UserName = "admin1@gmail.com",
+                Email = "admin1@gmail.com",
                 EmailConfirmed = true,
-                PhoneNumber = ""
+                PhoneNumber = "111111111111",
+                FistName = "Alexander",
+                LastName = "Admin"
             };
 
+            _userManager.CreateAsync(adminUser,"Admin123*").GetAwaiter().GetResult();
+            _userManager.AddToRoleAsync(adminUser,SD.Admin).GetAwaiter().GetResult();
 
-
+            var temp1 = _userManager.AddClaimsAsync(adminUser, new Claim[]
+            {
+                new Claim(JwtClaimTypes.Name,adminUser.FistName+" "+adminUser.LastName),
+                new Claim(JwtClaimTypes.GivenName,adminUser.FistName),
+                new Claim(JwtClaimTypes.FamilyName,adminUser.LastName),
+                new Claim(JwtClaimTypes.Role,SD.Admin)
+            }).Result;
 
         }
     }
