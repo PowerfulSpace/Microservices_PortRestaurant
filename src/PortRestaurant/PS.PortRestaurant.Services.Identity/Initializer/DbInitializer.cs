@@ -53,6 +53,28 @@ namespace PS.PortRestaurant.Services.Identity.Initializer
                 new Claim(JwtClaimTypes.Role,SD.Admin)
             }).Result;
 
+
+            ApplicationUser customerUser = new ApplicationUser()
+            {
+                UserName = "customer1@gmail.com",
+                Email = "customer1@gmail.com",
+                EmailConfirmed = true,
+                PhoneNumber = "111111111111",
+                FistName = "Sasha",
+                LastName = "Customer"
+            };
+
+            _userManager.CreateAsync(customerUser, "Customer123*").GetAwaiter().GetResult();
+            _userManager.AddToRoleAsync(customerUser, SD.Admin).GetAwaiter().GetResult();
+
+            var temp2 = _userManager.AddClaimsAsync(customerUser, new Claim[]
+            {
+                new Claim(JwtClaimTypes.Name,customerUser.FistName+" "+customerUser.LastName),
+                new Claim(JwtClaimTypes.GivenName,customerUser.FistName),
+                new Claim(JwtClaimTypes.FamilyName,customerUser.LastName),
+                new Claim(JwtClaimTypes.Role,SD.Customer)
+            }).Result;
+
         }
     }
 }
