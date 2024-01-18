@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PS.PortRestaurant.Services.Identity;
 using PS.PortRestaurant.Services.Identity.DbContexts;
+using PS.PortRestaurant.Services.Identity.Initializer;
 using PS.PortRestaurant.Services.Identity.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,10 @@ var builderIdentityServer = builder.Services.AddIdentityServer(options =>
 builderIdentityServer.AddDeveloperSigningCredential();
 
 
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+
+
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -48,6 +53,14 @@ app.UseRouting();
 app.UseIdentityServer();
 
 app.UseAuthorization();
+
+
+using(var scope = app.Services.CreateScope())
+{
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+    dbInitializer.Initialize();
+}
+
 
 app.MapRazorPages();
 
