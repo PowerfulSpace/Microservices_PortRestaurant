@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Localization;
 using PS.PortRestaurant.Web;
 using PS.PortRestaurant.Web.Services;
 using PS.PortRestaurant.Web.Services.IServices;
@@ -10,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddLocalization();
+
+#region localization
 
 var localizationOptions = new RequestLocalizationOptions();
 
@@ -23,6 +24,8 @@ localizationOptions.SupportedCultures = supportedCultures;
 localizationOptions.SupportedUICultures = supportedCultures;
 localizationOptions.SetDefaultCulture("en-US");
 localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
+
+#endregion
 
 
 
