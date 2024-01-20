@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using PS.PortRestaurant.Web;
 using PS.PortRestaurant.Web.Services;
 using PS.PortRestaurant.Web.Services.IServices;
@@ -37,6 +38,28 @@ SD.ProductAPIBase = builder.Configuration["ServiceUrls:ProductAPI"];
 builder.Services.AddControllersWithViews();
 
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = "Cookies";
+    options.DefaultChallengeScheme = "oidc";
+})
+    .AddCookie("Cookies", c => c.ExpireTimeSpan = TimeSpan.FromMinutes(10))
+    .AddOpenIdConnect("oidc", options =>
+    {
+        options.Authority = builder.Configuration["ServiceUrls:IdentityAPI"];
+        options.GetClaimsFromUserInfoEndpoint = true;
+        options.ClientId = "port";
+        options.ClientSecret = "secret";
+        options.ResponseType = "code";
+
+        options.TokenValidationParameters.NameClaimType = "name";
+        options.TokenValidationParameters.RoleClaimType = "role";
+        options.Scope.Add("port");
+        options.SaveTokens = true;
+
+    });
+
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -51,6 +74,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
