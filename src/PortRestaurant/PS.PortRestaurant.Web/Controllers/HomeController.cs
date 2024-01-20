@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PS.PortRestaurant.Web.Models;
 using System.Diagnostics;
@@ -17,6 +18,19 @@ namespace PS.PortRestaurant.Web.Controllers
         {
             return View();
         }
+
+
+        [Authorize]
+        public IActionResult Login()
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Logout()
+        {
+            return SignOut("Cookies", "oidc");
+        }
+
+
 
         public IActionResult Privacy()
         {
