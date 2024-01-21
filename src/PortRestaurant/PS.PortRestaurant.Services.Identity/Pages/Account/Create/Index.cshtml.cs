@@ -74,7 +74,7 @@ public class Index : PageModel
                 UserName = Input.Username,
                 Email = Input.Email,
                 EmailConfirmed = true,
-                FistName = Input.FirstName,
+                FirstName = Input.FirstName,
                 LastName = Input.LastNAme
             };
 

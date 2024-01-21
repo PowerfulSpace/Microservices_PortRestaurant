@@ -38,7 +38,7 @@ namespace PS.PortRestaurant.Services.Identity.Initializer
                 Email = "admin1@gmail.com",
                 EmailConfirmed = true,
                 PhoneNumber = "111111111111",
-                FistName = "Alexander",
+                FirstName = "Alexander",
                 LastName = "Admin"
             };
 
@@ -47,8 +47,8 @@ namespace PS.PortRestaurant.Services.Identity.Initializer
 
             var temp1 = _userManager.AddClaimsAsync(adminUser, new Claim[]
             {
-                new Claim(JwtClaimTypes.Name,adminUser.FistName+" "+adminUser.LastName),
-                new Claim(JwtClaimTypes.GivenName,adminUser.FistName),
+                new Claim(JwtClaimTypes.Name,adminUser.FirstName+" "+adminUser.LastName),
+                new Claim(JwtClaimTypes.GivenName,adminUser.FirstName),
                 new Claim(JwtClaimTypes.FamilyName,adminUser.LastName),
                 new Claim(JwtClaimTypes.Role,SD.Admin)
             }).Result;
@@ -60,7 +60,7 @@ namespace PS.PortRestaurant.Services.Identity.Initializer
                 Email = "customer1@gmail.com",
                 EmailConfirmed = true,
                 PhoneNumber = "111111111111",
-                FistName = "Sasha",
+                FirstName = "Sasha",
                 LastName = "Customer"
             };
 
@@ -69,8 +69,8 @@ namespace PS.PortRestaurant.Services.Identity.Initializer
 
             var temp2 = _userManager.AddClaimsAsync(customerUser, new Claim[]
             {
-                new Claim(JwtClaimTypes.Name,customerUser.FistName+" "+customerUser.LastName),
-                new Claim(JwtClaimTypes.GivenName,customerUser.FistName),
+                new Claim(JwtClaimTypes.Name,customerUser.FirstName+" "+customerUser.LastName),
+                new Claim(JwtClaimTypes.GivenName,customerUser.FirstName),
                 new Claim(JwtClaimTypes.FamilyName,customerUser.LastName),
                 new Claim(JwtClaimTypes.Role,SD.Customer)
             }).Result;
