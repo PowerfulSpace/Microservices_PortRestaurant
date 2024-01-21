@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PS.PortRestaurant.Web.Models;
@@ -21,8 +22,9 @@ namespace PS.PortRestaurant.Web.Controllers
 
 
         [Authorize]
-        public IActionResult Login()
+        public async Task<IActionResult> LoginAsync()
         {
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Logout()
