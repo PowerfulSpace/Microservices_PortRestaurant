@@ -23,7 +23,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
-        options.Authority = "http://localhost:44331/";
+        options.Authority = "https://localhost:44331/";
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateAudience = false

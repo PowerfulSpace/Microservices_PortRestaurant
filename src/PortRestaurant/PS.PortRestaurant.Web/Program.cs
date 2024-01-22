@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 using PS.PortRestaurant.Web;
 using PS.PortRestaurant.Web.Services;
@@ -51,6 +52,9 @@ builder.Services.AddAuthentication(options =>
         options.ClientId = "port";
         options.ClientSecret = "secret";
         options.ResponseType = "code";
+
+        options.ClaimActions.MapJsonKey("role", "role", "role");
+        options.ClaimActions.MapJsonKey("sub", "sub", "sub");
 
 
         options.TokenValidationParameters.NameClaimType = "name";
