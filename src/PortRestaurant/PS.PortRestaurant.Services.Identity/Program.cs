@@ -1,9 +1,11 @@
+using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PS.PortRestaurant.Services.Identity;
 using PS.PortRestaurant.Services.Identity.DbContexts;
 using PS.PortRestaurant.Services.Identity.Initializer;
 using PS.PortRestaurant.Services.Identity.Models;
+using PS.PortRestaurant.Services.Identity.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +34,7 @@ builderIdentityServer.AddDeveloperSigningCredential();
 
 
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-
+builder.Services.AddScoped<IProfileService, ProfileService>();
 
 
 builder.Services.AddRazorPages();
